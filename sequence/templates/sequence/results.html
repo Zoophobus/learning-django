@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'sequence/style.css' %}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Sequence data </title>
+    </head>
+
+    <body>
+        <!-- Grid structure for the sequences -->
+        <div class="grid-container">
+            <!-- Grid title -->
+            <div class="grid-title">
+                {% if sequence.sequence_type == 'DNA' %}
+                The DNA sequences:
+                {% elif sequence.sequence_type == 'RNA' %}
+                The RNA sequences:
+                {% else %}
+                The Amino acid sequences:
+                {% endif %}
+            </div>
+
+            <!-- The sequences with colour! -->
+            <div class="top-left">
+                {% if sequence %}
+                    {% for character in sequence.sequence %}
+                        {% if character == 'C' %}
+                            <span class='sequence' style="color:red"> C </span>
+                        {% if character == 'A' %}
+                            <span class='sequence'style="color:blue"> A </span>
+                        {% if character == 'T' %}
+                            <span class='sequence'style="color:yellow"> T </span>
+                        {% if character == 'G' %}
+                            <span class='sequence'style="color:green"> G </span>
+                        {% else %}
+                        <span class='sequence' > N </span>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <!-- End of the title section -->
+            </div>
+
+            <!-- The section that features the figures -->
+            <div class="right" > 
+                Not a figure yet 
+            </div>
+                <!-- End of the figures -->
+
+                <!-- The section with the analysis settings -->
+            <div class="bottom-left">
+                <h5>
+                    Settings for analysis.
+                </h5>
+                <br>
+                <button class="prominent"> diversity </button>
+                <button class="prominent"> dN/dS </button>
+                <button class="prominent"> CG content </button>
+                <!-- End of the settings -->
+            </div>
+
+            <!-- Beginning of the summary statistics -->
+            <div class="bottom-center">
+            <!-- End of the summary statistics -->
+            </div>
+        </div>
+    </body>
+</html>

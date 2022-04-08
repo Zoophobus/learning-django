@@ -1,0 +1,8 @@
+Before being able to import the different django models or classes the
+environment needs to be setup.
+
+To do this follow the proceeding steps:
+    1. import os
+    2. import django
+    3. os.environ.setdefault('DJANGO_SETTINGS_MODULE','educational.settings')
+    4. django.setup()

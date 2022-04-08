@@ -1,0 +1,99 @@
+
+body {
+    margin-left: 10%; margin-right: 10%;
+    background-color: #EBEBFA;
+}
+
+div.grid-container {
+    display: grid;
+    grid-template-areas:
+    'head head head head head'
+    'seq seq seq graph graph'
+    'seq seq seq graph graph'
+    'info stat stat graph graph';
+    grid-gap: 10px;
+    background-color: #EBEBFA;
+    padding: 10px;
+    border-style: inset;
+}
+
+div.grid-container > div {
+    background-color: rgba(201,201,201,0.3);
+    text-align: center;
+    padding: 60px 0;
+    border-style: outset;
+}
+
+div.grid-title {
+    grid-area: head;
+    background-color: #EBEBFF;
+}
+
+div.top-left {
+    grid-area: seq;
+}
+
+div.right {
+    grid-area: graph;
+}
+
+div.bottom-left {
+    grid-area: info;
+}
+
+div.bottom-center {
+    grid-area: stat;
+}
+
+button.prominent {
+    border-style: outset;
+    background-color: #8181B4;
+    color: #DDDDDD;
+    height: 2rem;
+    text-align: center;
+}
+
+button.prominent:hover{
+    background-color: #A2A2C4;
+    color: white;
+}
+
+div.main-page-grid{
+    display: grid;
+    grid-template-areas:
+    'list add add'
+    'list view view'
+    'list view view';
+    grid-gap: 2px;
+    background-color: #EBEBFB;
+    padding: 10px;
+    border-style: inset;
+}
+
+div.main-page-grid > div{
+    background-color: rgba(255,255,255,0.2);
+    padding: 60px 0;
+    border-style: outset;
+}
+
+div.list {
+    grid-area: list;
+    text-align: center;
+}
+
+div.add {
+    grid-area: add;
+    text-align: center;
+}
+
+div.alignment {
+    grid-area: view;
+    width: 100%;
+    min-width: 500px;
+    text-align: left;
+    display: inline-block;
+}
+
+span.sequence {
+    font-family: monospace;
+}

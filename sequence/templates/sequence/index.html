@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+
+<html>
+
+    <head>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'sequence/style.css' %}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title> Sequence </title>
+    </head>
+    <body>
+        <!-- starting with the grid system -->
+        <div class="main-page-grid">
+            <div class="list" style="float:left;">
+                {% if latest_list %}
+                <form action="/select/" method="POST" name="selecting_sequences" >
+                    {% csrf_token %}
+                    {{ latest_list }}
+                    <input type="submit" name="view" value="View" > 
+                    <input type="submit" name="delete" value="Delete"> 
+                </form>
+                <!-- Change this to use a django multiple choice form and then use a link to the results -->
+                {% else %}
+                    <p> No sequences are currently available. </p>
+                {% endif %}
+                    <!-- end of the list device area -->
+            </div>
+
+            <!-- Start of the form for adding new sequences to the database -->
+            <div class="add">
+                <form action="/add/" method="POST">
+                    {% csrf_token %}
+                    <table>
+                    {{ add.as_table }}
+                    </table>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+
+            <!-- Start of the form for viewing the sequences on the results page -->
+            <div class="alignment" style="text-align:left; font-family: monospace; float: left;">
+                {% if view_alignment %}
+                <table>
+                <!-- for each sequence in alignment -->
+                    {% for sequence in view_alignment %}
+                        <tr>
+                <!-- print out the name -->
+                        <td> {{ sequence.name }}: </td>
+                <!-- add space characters for the offset from the reference -->
+                        <td>
+                        {% if sequence.start_offset > 0 %}
+                            {% for i in "x"|ljust:sequence.start_offset %}
+                                <span class='sequence'> - </span>
+                            {% endfor %}
+                        {% endif %}
+                <!-- print out the color coordinated sequence -->
+                        {% for character in sequence.sequence %}
+                            {% if character == 'C' %}
+                                <span class='sequence' style="color:red"> C </span>
+                            {% elif character == 'A' %}
+                                <span class='sequence' style="color:blue"> A </span>
+                            {% elif character == 'T' %}
+                                <span class='sequence' style="color:yellow"> T </span>
+                            {% elif character == 'G' %}
+                                <span class='sequence' style="color:green"> G </span>
+                            {% else %}
+                                <span class='sequence'> N </span>
+                            {% endif %}
+                        {% endfor %}
+                        </td>
+                    {% endfor %}
+                </table>
+                {% else %}
+                    No sequences selected!
+                {% endif %}
+            </div>
+
+            <!-- End of the grid device -->
+        </div>
+    </body>
+</html>

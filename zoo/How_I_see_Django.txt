@@ -1,0 +1,20 @@
+
+1: The basic form of Django is described in the templates.
+    1. These describe how the page will be presented
+    2. These also describe the items that allow you to interact.
+        (With the action= parameter in <form> elements)
+    3. These also define what the properties for presentation are, or
+        where they are obtained.
+
+2: Then the urls.py aspect tells Django how to respond to input
+    1. If you put in a form and give it an action="/Fight/"
+        1. Django will look in urls.py for "/Fight/"
+        2. Django will then execute the code that is in views and
+            is associated with "/Fight/"
+    2. This describes the actions to take upon a command
+
+3: Finally, the views page contains the Classes, Methods and techniques
+    that are required to successfully render the pages.
+    1. This is where most of the work might be done
+        1. Calling other packages
+        2. Executing other algorithms
